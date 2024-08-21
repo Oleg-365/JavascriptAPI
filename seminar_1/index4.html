@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task3</title>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+
+        const url1 = "./data.json";
+
+        async function fetchData(url) {
+            try {
+                const responce = await fetch(url);
+                const data = await responce.json();
+                return data;
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const data = await fetchData(url1);
+            const boxEl = document.querySelector('.box');
+
+            for (let i = 0; i < data.length; i++) {
+                const el = data[i];
+                localStorage.setItem(el.id, JSON.stringify(el))
+                boxEl.insertAdjacentHTML("beforeend", `
+                    <div class="article" id="${el.id}">
+                        <h1 class="title">${el.title}</h1>
+                        <p class="title">${el.text}</p>
+                        <button class="del">Удалить статью</button>
+                        <button class="red">Редактировать статью</button>
+                    </div>
+            `)
+            }
+
+        })
+
+        const articleEl = document.querySelectorAll('.article');
+        articleEl.forEach(element => async() => {
+            console.log(element);
+        });
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task 3</title>
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="mb-4"> Список статей</h1>
+		<ul class="list-group" id="articleList">
+			
+		</ul>
+		<button class="btn btn-primary mt-3" id="addArticalButton">Добавить статью</button>
+	</div>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+	<script>
+		const articleData = [
+			{
+				title: "Заголовок статьи 1",
+				content: "Содержание статьи 1"
+			},
+						{
+				title: "Заголовок статьи 2",
+				content: "Содержание статьи 2"
+			}
+		];
+
+		articleData.forEach(element => {
+			const articleItem = createArticle(element.title, element.content);
+			articleList.append(articleItem);
+		});
+
+		function createArticle(title, content) {
+			const articleItem = document.createElement('li');
+			articleItem.classList.add('list-group-item');
+
+			const articleTitle = document.createElement('h2');
+			articleTitle.classList.add('mb-3');
+			articleTitle.textContent = title;
+
+			const articleContent = document.createElement('p');
+			articleContent.textContent = content;
+
+			const editButton = document.createElement('button');
+			editButton.textContent = 'Редактировать';
+			editButton.classList.add('btn', 'btn-warning');
+
+			const deleteButton = document.createElement('button');
+			deleteButton.textContent = 'Удалить';
+			deleteButton.classList.add('btn', 'btn-danger');
+
+			articleItem.append(articleTitle);
+			articleItem.append(articleContent);
+			articleItem.append(editButton);
+			articleItem.append(deleteButton);
+
+			return articleItem;
+		}
+
+		addArticalButton.addEventListener('click', (e) => {
+			const newArticle = {
+				title: 'Новая статья',
+				content: 'Введите новый текст статьи'
+			}
+			const articleItem = createArticle(newArticle.title, newArticle.content);
+			articleList.append(articleItem);
+		})
+
+		articleList.addEventListener('click', (e) => {
+			if(e.target.textContent == 'Удалить') {
+				const articleItem = e.target.closest('li');
+				articleItem.remove();
+			}
+
+			if(e.target.textContent == 'Редактировать') {
+				const articleItem = e.target.closest('li');
+				const articleTitle = articleItem.querySelector('h2');
+				const articleContent = articleItem.querySelector('p');
+
+				const newTitle = prompt('Введите новый заголовок статьи', articleTitle.textContent);
+				const newContent = prompt('Введите новый текст статьи', articleContent.textContent);
+
+				if (newTitle !== null && newContent !==null) {
+					articleTitle.textContent = newTitle;
+					articleContent.textContent = newContent;
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

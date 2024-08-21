@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task2</title>
+    <style>
+        #blocks {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="addButton">Добавить элемент</button>
+    <button id="deleteButton">Удалить элемент</button>
+    <button id="cloneButton">Клонировать элемент</button>
+    <section id="blocks">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+
+    </section>
+
+    <script>
+
+        addButton.addEventListener('click', () => {
+            const newBox = document.createElement('div');
+            newBox.classList.add('box');
+            newBox.textContent = blocks.children.length + 1;
+            blocks.append(newBox);
+        });
+
+        deleteButton.addEventListener('click', () => {
+            if (blocks.children.length > 0) {
+                const lastBox = blocks.lastChild;
+                blocks.removeChild(lastBox);
+            }
+        });
+
+        cloneButton.addEventListener('click', () => {
+            if (blocks.children.length > 0) {
+                const lastBox = blocks.lastChild;
+                const clone = lastBox.cloneNode(true);
+                blocks.append(clone);
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
