@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus</title>
+    <style>
+        .invalid {
+            border-color: red;
+        }
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form name="superForm">
+        Ваш email: <input type="email" name="input">
+        <div id="error"></div>
+    </form>
+    <script>
+        const input = document.forms.superForm.input;
+        const error = document.querySelector('#error');
+
+        // input.onblur = function () {
+        //     if (!input.value.includes('@')) { // не емэйл
+        //         input.classList.add('invalid');
+        //         error.textContent = 'Пожалуйста, введите правильное мыло'
+        //     }
+        // };
+
+        input.addEventListener('blur', function () {
+            if (!input.value.includes('@')) { // не емэйл
+                input.classList.add('invalid');
+                error.textContent = 'Пожалуйста, введите правильное мыло'
+            }
+        });
+
+        // input.onfocus = function () {
+        //     if (this.classList.contains('invalid')) {
+        //         this.classList.remove('invalid');
+        //         error.textContent = '';
+        //     }
+        // }
+
+        input.addEventListener('focus', function () {
+            if (this.classList.contains('invalid')) {
+                this.classList.remove('invalid');
+                error.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>
