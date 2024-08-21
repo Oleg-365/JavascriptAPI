@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dispatch 2</title>
+</head>
+<body>
+	<button id="btn">Нажми меня</button>
+
+	<script>
+		
+
+		const button = document.querySelector('#btn');
+
+		button.addEventListener('click', function(event) {
+			if (event.isTrusted) {
+				console.log("Клик событие является доверенным")
+			}
+			console.log("Клик событие не является доверенным")
+		})
+
+		function simulateClick() {
+			const clickEvent = new Event('click', { bubbles: true})
+			button.dispatchEvent(clickEvent);
+		}
+
+		setTimeout(simulateClick, 2000); // Имитация клика через 2 секунды
+
+	</script>
+</body>
+</html>

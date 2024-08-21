@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>load</title>
+	<!-- тут нужен фонтасом -->
+	<style>
+		/*Стили для прелодера*/
+		.loader {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+		.loader .fa-spinner {
+			font-size: 48px;
+			color: #333;
+			animation: spin 1s linear infinite;
+		}
+		/*анимация вращения*/
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		.hidden {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="loader">
+		<i class="fas fa-spinner"></i>
+	</div>
+
+	<div class="content hidden">
+		<h1>Заголовок</h1>
+		<p>Содержимое страницы</p>
+		<img src="https://fanibani.ru/wp-content/uploads/2022/12/kotenok-koshka-kot.jpg" alt="кот">
+	</div>
+
+	<script>
+		window.addEventListener('load', function (e) {
+			const contentEl = document.querySelector('.content');
+			contentEl.classList.remove('hidden');
+
+			const loaderEl = document.querySelector('.loader');
+			loaderEl.style.display = 'none';
+
+		})
+	</script>
+
+</body>
+</html>
