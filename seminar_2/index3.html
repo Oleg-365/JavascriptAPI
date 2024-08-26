@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dispatch 2</title>
+</head>
+<body>
+	<button id="btn">Купить</button>
+
+	<script>
+		
+
+		const button = document.querySelector('#btn');
+
+		button.addEventListener('click', function(event) {
+			if (event.isTrusted) {
+				console.log("Клик событие является доверенным")
+				event.target.textContent = 'Товар добавлен в корзину';
+				event.target.style.backgroundColor = 'orange'
+				setTimeout(() => {
+					event.target.textContent = 'Купить';
+					event.target.style.backgroundColor = 'green';
+				}, 2000);
+			}
+			console.log("Клик событие не является доверенным")
+		})
+
+		function simulateClick() {
+			const clickEvent = new Event('click', { bubbles: true})
+			button.dispatchEvent(clickEvent);
+		}
+
+		setTimeout(simulateClick, 2000); // Имитация клика через 2 секунды
+
+	</script>
+</body>
+</html>

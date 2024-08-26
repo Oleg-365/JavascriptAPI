@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modal</title>
+	<style>
+		#modal {
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 300px;
+			padding: 20px;
+			background-color: #f0f0f0;
+			text-align: center;
+		}
+		.open-modal-btn {
+			padding: 10px 20px;
+			background-color: #333;
+			color: #fff;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<button class="open-modal-btn">Открыть модальное окно</button>
+
+	<div id="modal">
+		<h2>Модальное окно</h2>
+		<p>Нажмите вне окна, чтобы закрыть его</p>
+		<button class="open-modal-btn close-modal-btn">Закрыть модальное окно</button>
+	</div>
+
+	<script> 
+		const modal = document.getElementById('modal');
+
+		const openModalBtn = document.querySelector('.open-modal-btn');
+		const closeModalBtn = document.querySelector('.close-modal-btn');
+
+		openModalBtn.addEventListener('click', function () {
+			modal.style.display = 'block';
+		})
+
+		closeModalBtn.addEventListener('click', function(event) {
+			modal.style.display = 'none';
+		})
+	</script>
+</body>
+</html>
